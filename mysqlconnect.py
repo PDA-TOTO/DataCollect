@@ -13,16 +13,16 @@ DATABASE = os.getenv("DATABASE")
 
 def connet_to_mysql():
     connection = mysql.connector.connect(
-        host= 'localhost',
-        port="3312",
-        user='root',
-        password='root',
-        database='toto'
-        # host= HOST,
-        # port=PORT,
-        # user=USER',
-        # password=PASSWORD,
-        # database=DATANSE
+        # host= 'localhost',
+        # port="3312",
+        # user='root',
+        # password='root',
+        # database='my_database'
+        host= HOST,
+        port=PORT,
+        user=USER,
+        password=PASSWARD,
+        database=DATABASE
     )
     print("connect")
     return connection
