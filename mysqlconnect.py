@@ -18,7 +18,7 @@ def connet_to_mysql():
         # port="3312",
         # user='root',
         # password='root',
-        # database='toto'
+        # database='my_database'
         host= HOST,
         port=PORT,
         user=USER,

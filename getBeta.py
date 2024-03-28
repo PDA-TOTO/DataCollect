@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
 import re
-
 from mysqlconnect import connet_to_mysql
+
 
 def crawl_beta(code) : 
     driver = webdriver.Chrome()
@@ -46,16 +46,29 @@ def stock_crawl(code):
     
     return beta
     
+# etf_crawl("102780")
+# stock_crawl('005930')
 
-
-
-# print(etf_crawl("102780"))
-# print(stock_crawl('005930'))
-
-# print(stock_crawl('001465'))
+stocks = stock.get_market_ticker_list("20240315")
+etfs = stock.get_etf_ticker_list("20240315")
 
 connection = connet_to_mysql()
 cursor = connection.cursor()
+print(crawl_beta("001465"))
+
+# for code in etfs:
+#     print(code)
+#     query = f"INSERT INTO FINANCE3 (code) VALUES ('{code}')"
+#     try :
+#         cursor.execute(query)
+#         connection.commit()
+#         print(query)
+#     except Exception as e:
+#         print(e)
+        
+query = "select code from FINANCE3 where beta is null"
+cursor.execute(query)
+
 
 for code in stock.get_etf_ticker_list("20240225") :
     print(code)
@@ -71,8 +84,6 @@ for code in stock.get_etf_ticker_list("20240225") :
         print(query)    
     except Exception as e:
         print("fail")    
-
-# print(stock.get_market_ticker_list("20240225"))
 
 cursor.close()
 connection.close()
